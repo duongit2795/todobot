@@ -5,6 +5,11 @@ use App\Http\Controllers\BotManController;
 
 $botman = resolve('botman');
 
+$botman->hears('/start', function ($bot) {
+    $bot->reply('👋 Hi! I am the Build A Chatbot TodoBot!');
+    $bot->reply('You can use "add new todo" to add new todos.');
+});
+
 $botman->hears('show my todos', function ($bot) {
 
     $todos = Todo::where('completed', false)
