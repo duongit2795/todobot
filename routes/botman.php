@@ -16,3 +16,25 @@ $botman->hears('show my todos', function ($bot) {
         $bot->reply('You do not have any todos');
     }
 });
+
+$botman->hears('add new todo {task}', function ($bot, $task) {
+
+    Todo::create([
+        'task' => $task
+    ]);
+    $bot->reply('You added a new todo for "'.$task.'"');
+
+});
+
+$botman->hears('add new todo', function ($bot) {
+
+    $bot->ask('Which task do you want to add', function($answer, $conversation) {
+
+        Todo::create([
+            'task' => $answer
+        ]);
+        $conversation->say('You added a new todo for "'.$answer.'"');
+        
+    });
+    
+});
