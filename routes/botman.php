@@ -7,7 +7,9 @@ $botman = resolve('botman');
 
 $botman->hears('show my todos', function ($bot) {
 
-    $todos = Todo::where('completed', false)->get();
+    $todos = Todo::where('completed', false)
+        ->where('user_id', $bot->getMessage()->getSender())
+        ->get();
 
     if (count($todos) > 0) {
 
@@ -29,7 +31,8 @@ $botman->hears('show my todos', function ($bot) {
 $botman->hears('add new todo {task}', function ($bot, $task) {
 
     Todo::create([
-        'task' => $task
+        'task' => $task,
+        'user_id' => $bot->getMessage()->getSender()
     ]);
 
     $bot->reply('You added a new todo for "'.$task.'"');
@@ -38,10 +41,11 @@ $botman->hears('add new todo {task}', function ($bot, $task) {
 
 $botman->hears('add new todo', function ($bot) {
 
-    $bot->ask('Which task do you want to add', function ($answer, $conversation) {
+    $bot->ask('Which task do you want to add?', function ($answer, $conversation) {
 
         Todo::create([
-            'task' => $answer
+            'task' => $answer,
+            'user_id' => $conversation->getBot()->getMessage()->getSender()
         ]);
 
         $conversation->say('You added a new todo for "'.$answer.'"');
