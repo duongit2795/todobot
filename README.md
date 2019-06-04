@@ -1,25 +1,27 @@
-<p align="center"><img height="188" width="198" src="https://botman.io/img/botman.png"></p>
-<h1 align="center">BotMan Studio</h1>
+## TodoBot
+TodoBot is a simple PHP chatbot using the BotMan Studio & Laravel frameworks to create a todo-list bot connected to Telegram & Facebook Messenger.
 
-## About BotMan Studio
+It was one of the mini-projects created as part of the [Build A Chatbot](https://course.buildachatbot.io) course.
+
+
+<p><img height="94" width="99" src="https://botman.io/img/botman.png"></p>
+
+### About BotMan Studio
 
 While BotMan itself is framework agnostic, BotMan is also available as a bundle with the great [Laravel](https://laravel.com) PHP framework. This bundled version is called BotMan Studio and makes your chatbot development experience even better. By providing testing tools, an out of the box web driver implementation and additional tools like an enhanced CLI with driver installation, class generation and configuration support, it speeds up the development significantly.
 
-## Documentation
+#### BotMan License
 
-You can find the BotMan and BotMan Studio documentation at [http://botman.io](http://botman.io).
+BotMan is free software distributed under the terms of the [MIT license](https://opensource.org/licenses/MIT).
 
-## Support the development
-**Do you like this project? Support it by donating**
 
-- PayPal: [Donate](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=m%2epociot%40googlemail%2ecom&lc=CY&item_name=BotMan&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest)
-- Patreon: [Donate](https://www.patreon.com/botman)
+<p><img height="94" width="150" src="https://camo.githubusercontent.com/5ceadc94fd40688144b193fd8ece2b805d79ca9b/68747470733a2f2f6c61726176656c2e636f6d2f6173736574732f696d672f636f6d706f6e656e74732f6c6f676f2d6c61726176656c2e737667"></p>
 
-## Security Vulnerabilities
+### About Laravel
 
-If you discover a security vulnerability within BotMan or BotMan Studio, please send an e-mail to Marcel Pociot at m.pociot@gmail.com. All security vulnerabilities will be promptly addressed.
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects.
 
-## License
+#### Laravel License
 
-BotMan is free software distributed under the terms of the MIT license.
+The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
