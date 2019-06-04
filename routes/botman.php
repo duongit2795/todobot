@@ -2,15 +2,33 @@
 
 use App\Todo;
 use App\Http\Controllers\BotManController;
-use BotMan\Drivers\Telegram\Extensions\Keyboard;
-use BotMan\Drivers\Telegram\Extensions\KeyboardButton;
+use BotMan\BotMan\Messages\Outgoing\Question;
+use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 
 $botman = resolve('botman');
 
-$botman->hears('/start', function ($bot) {
+$botman->hears('/start|GET_STARTED', function ($bot) {
     $bot->reply('👋 Hi! I am the Build A Chatbot TodoBot!');
     $bot->reply('You can use "add new todo" to add new todos.');
 });
+
+// $botman->hears('show my todos', function ($bot) {
+//     $todos = Todo::where('completed', false)
+//         ->where('user_id', $bot->getMessage()->getSender())
+//         ->get();
+//     if (count($todos) > 0) {
+//         $bot->reply('Your todos are:');
+//         foreach ($todos as $todo) {
+//             $keyboard = Keyboard::create()->addRow(
+//                 KeyboardButton::create('Mark completed')->callbackData('finish todo '.$todo->id),
+//                 KeyboardButton::create('Delete')->callbackData('delete todo '.$todo->id)
+//             );
+//             $bot->reply($todo->id.' - '.$todo->task, $keyboard->toArray());
+//         }
+//     } else {
+//         $bot->reply('You do not have any todos');
+//     }
+// });
 
 $botman->hears('show my todos', function ($bot) {
 
@@ -24,11 +42,11 @@ $botman->hears('show my todos', function ($bot) {
 
         foreach ($todos as $todo) {
 
-            $keyboard = Keyboard::create()->addRow(
-                KeyboardButton::create('Mark completed')->callbackData('finish todo '.$todo->id),
-                KeyboardButton::create('Delete')->callbackData('delete todo '.$todo->id)
-            );
-            $bot->reply($todo->id.' - '.$todo->task, $keyboard->toArray());
+            $question = Question::create($todo->id.' - '.$todo->task)->addButtons([
+                Button::create('Mark completed')->value('finish todo '.$todo->id),
+                Button::create('Delete')->value('delete todo '.$todo->id)
+            ]);
+            $bot->reply($question);
 
         }
 
