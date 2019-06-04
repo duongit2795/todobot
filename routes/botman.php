@@ -8,8 +8,8 @@ use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 $botman = resolve('botman');
 
 $botman->hears('/start|GET_STARTED', function ($bot) {
-    $bot->reply('👋 Hi! I am the Build A Chatbot TodoBot!');
-    $bot->reply('You can use "add new todo" to add new todos.');
+    $bot->reply(trans('bot.start_reply'));
+    $bot->reply(trans('bot.start_reply_byline'));
 });
 
 // $botman->hears('show my todos', function ($bot) {
