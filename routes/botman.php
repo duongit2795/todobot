@@ -2,6 +2,8 @@
 
 use App\Todo;
 use App\Http\Controllers\BotManController;
+use BotMan\Drivers\Telegram\Extensions\Keyboard;
+use BotMan\Drivers\Telegram\Extensions\KeyboardButton;
 
 $botman = resolve('botman');
 
@@ -22,7 +24,11 @@ $botman->hears('show my todos', function ($bot) {
 
         foreach ($todos as $todo) {
 
-            $bot->reply($todo->id.' - '.$todo->task);
+            $keyboard = Keyboard::create()->addRow(
+                KeyboardButton::create('Mark completed')->callbackData('finish todo '.$todo->id),
+                KeyboardButton::create('Delete')->callbackData('delete todo '.$todo->id)
+            );
+            $bot->reply($todo->id.' - '.$todo->task, $keyboard->toArray());
 
         }
 
